@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=64(g00wqo9v-sq&n2c@sr78#)73vbu^^!7xm*nz)tq$!%bl5v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'book',
     'purchase',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,6 +54,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True 
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://api-practice-wmvp.onrender.com"
+]
+
 
 ROOT_URLCONF = 'library_management_backend.urls'
 
@@ -124,3 +133,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Base url to serve media files
+MEDIA_URL = '/media/'
+
+# Path where media is stored'
+# MEDIA_ROOT = BASE_DIR / 'book'
